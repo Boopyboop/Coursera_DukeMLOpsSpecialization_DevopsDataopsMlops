@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  svc:
+    build: .
+    container_name: python-devops-demo-svc
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models:rw
+    environment:
+      - MODEL_PATH=/app/models/model.joblib
+    networks:
+      - devnet
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: python-devops-demo-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./ops/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - devnet
+
+networks:
+  devnet:
+    driver: bridge
