@@ -5,12 +5,13 @@ install:
 	pip install -r requirements.txt
 
 test:
-	pytest -q
+
+	python -m pytest --rootdir=. --ignore=venv --tb=short
 
 lint:
 	pylint --disable=C0114,C0115,C0116 src
 
 format:
-	black src tests
+	python -m black src tests
 
 all: install lint test format
