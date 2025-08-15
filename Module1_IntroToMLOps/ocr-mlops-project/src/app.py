@@ -1,5 +1,5 @@
 import argparse
-from src.ocr_pipeline import extract_text_from_path
+from ocr_pipeline import extract_text_from_path
 
 
 def main() -> None:

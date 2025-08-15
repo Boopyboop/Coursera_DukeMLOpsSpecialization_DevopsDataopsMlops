@@ -1,3 +1,5 @@
+# pylint: disable=no-member
+
 from __future__ import annotations
 from typing import Optional
 import numpy as np
@@ -16,20 +18,23 @@ def pil_to_cv(img: Image.Image) -> np.ndarray:
     arr = np.array(img)  # RGB
     return cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
 
-
 def preprocess(img: Image.Image, threshold: Optional[int] = 180) -> Image.Image:
     """
-    Basic preprocessing: grayscale + binary threshold.
-    Returns a PIL Image suitable for OCR.
+    Preprocess an image for better OCR accuracy:
+    - Convert to grayscale
+    - Apply binary thresholding if specified
+    - Return a PIL Image ready for OCR
     """
     cv_img = pil_to_cv(img)
-    gray = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY)  # pylint: disable=no-member
+
     if threshold is not None:
-        _, th = cv2.threshold(gray, threshold, 255, cv2.THRESH_BINARY)
+        _, th = cv2.threshold(gray, threshold, 255, cv2.THRESH_BINARY)  # pylint: disable=no-member
     else:
         th = gray
-    # Back to PIL
+
     return Image.fromarray(th)
+
 
 
 def ocr_image(img: Image.Image, lang: str = "eng") -> str:
