@@ -1,0 +1,7 @@
+pytesseract
+Pillow
+opencv-python-headless
+numpy
+pytest
+black
+pylint

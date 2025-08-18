@@ -1,0 +1,29 @@
+"""
+Main application entry point for OCR processing.
+"""
+
+import argparse
+from .ocr_pipeline import extract_text_from_path
+
+
+def main() -> None:
+    """
+    Parse command-line arguments and run OCR on the given image.
+
+    Command-line arguments:
+        image: Path to the image file (png/jpg)
+        --lang: Tesseract language code (default: "eng")
+    """
+    parser = argparse.ArgumentParser(description="Run OCR on an image.")
+    parser.add_argument("image", help="Path to image file (png/jpg)")
+    parser.add_argument(
+        "--lang", default="eng", help="Tesseract language (default: eng)"
+    )
+    args = parser.parse_args()
+
+    text = extract_text_from_path(args.image, lang=args.lang)
+    print(text)
+
+
+if __name__ == "__main__":
+    main()
