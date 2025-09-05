@@ -207,3 +207,44 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+#keys: 
+mlops_class_key.pem
+
+# ============================
+# Rust / Cargo
+# ============================
+
+# Cargo build artifacts
+/target/
+
+# Cargo package output
+*.crate
+
+# Cargo lock file (if you're building libraries; keep if binary project)
+Cargo.lock
+
+# ============================
+# Logs & Misc
+# ============================
+*.log
+
+# ============================
+# IDEs & Editors
+# ============================
+
+# VS Code
+.vscode/
+
+# IntelliJ / CLion / RustRover
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
